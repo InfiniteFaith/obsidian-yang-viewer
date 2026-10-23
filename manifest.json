@@ -1,0 +1,9 @@
+{
+  "id": "yang-viewer",
+  "name": "YANG Viewer",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Edit and visualize YANG files (RFC 7950): syntax highlighting, outline tree, validation.",
+  "author": "InfiniteFaith",
+  "isDesktopOnly": false
+}

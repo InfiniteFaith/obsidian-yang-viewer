@@ -1,0 +1,23 @@
+module broken-module {
+  yang-version "2.0";
+  namespace "urn:example:broken";
+  prefix br;
+
+  container top {
+    list items {
+      key "missing-key";
+      leaf id { type string; }
+    }
+    leaf conflict {
+      type int32;
+      mandatory true;
+      default 42;
+    }
+    leaf bad-type {
+      type my-unknown-type;
+    }
+  }
+
+  typedef dup-t { type string; }
+  typedef dup-t { type int32; }
+}

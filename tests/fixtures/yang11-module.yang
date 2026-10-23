@@ -1,0 +1,51 @@
+module yang-11-demo {
+  yang-version 1.1;
+  namespace "urn:example:yang11";
+  prefix y11;
+
+  anydata config-data;
+  anyxml raw-xml;
+
+  feature ipv4-validation;
+
+  identity address-family {
+    description "Base identity for address families";
+  }
+  identity ipv4-afi {
+    base address-family;
+  }
+
+  grouping endpoint-params {
+    leaf ip { type string; }
+    leaf port { type uint16; default 8080; }
+  }
+
+  container server {
+    uses endpoint-params;
+    leaf-list listen-addrs {
+      type string;
+      ordered-by user;
+    }
+    choice transport {
+      case tcp {
+        leaf tcp-port { type uint16; }
+      }
+      case udp {
+        leaf mtu { type uint16; }
+      }
+    }
+  }
+
+  augment "/server" {
+    when "derived-from-or-self(transport, 'tcp')";
+    leaf tcp-keepalive {
+      if-feature ipv4-validation;
+      type boolean;
+      default true;
+    }
+  }
+
+  notification server-started {
+    leaf timestamp { type string; }
+  }
+}

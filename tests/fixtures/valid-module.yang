@@ -1,0 +1,51 @@
+module demo-interfaces {
+  yang-version 1.1;
+  namespace "urn:example:demo-interfaces";
+  prefix di;
+
+  import ietf-interfaces {
+    prefix if;
+  }
+
+  organization "Example Corp";
+  description "Demo module for testing";
+
+  typedef speed-t {
+    type enumeration {
+      enum 100m;
+      enum 1g;
+      enum 10g;
+    }
+  }
+
+  container interfaces {
+    list interface {
+      key "name";
+      leaf name {
+        type string;
+      }
+      leaf speed {
+        type speed-t;
+      }
+      leaf admin-status {
+        type leafref {
+          path "/interfaces/interface/name";
+        }
+      }
+      container statistics {
+        config false;
+        leaf in-octets { type uint64; }
+        leaf out-octets { type uint64; }
+      }
+    }
+  }
+
+  rpc reset {
+    input {
+      leaf force { type boolean; default false; }
+    }
+    output {
+      leaf result { type string; }
+    }
+  }
+}

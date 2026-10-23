@@ -1,0 +1,26 @@
+module choice-demo {
+  yang-version 1;
+  namespace "urn:example:choice";
+  prefix cd;
+
+  grouping endpoint {
+    leaf address { type string; }
+    leaf port { type uint16; }
+  }
+
+  container session {
+    choice transport {
+      case tcp {
+        leaf tcp-port { type uint16; }
+      }
+      case udp {
+        leaf udp-port { type uint16; }
+      }
+    }
+    uses endpoint;
+  }
+
+  notification link-down {
+    description "Link went down";
+  }
+}

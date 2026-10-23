@@ -1,0 +1,207 @@
+/* YANG Viewer styles */
+
+.yang-outline {
+  padding: 8px;
+  font-size: 13px;
+}
+
+.yang-outline-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.yang-outline-count {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.yang-tree-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 16px;
+}
+
+.yang-tree-list.collapsed {
+  display: none;
+}
+
+.yang-tree-node {
+  margin: 1px 0;
+}
+
+.yang-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.yang-tree-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.yang-tree-expander {
+  width: 16px;
+  display: inline-flex;
+  justify-content: center;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.yang-tree-icon {
+  display: inline-flex;
+  color: var(--text-faint);
+}
+
+.yang-tree-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.yang-tree-root {
+  font-weight: 600;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.yang-tree-root:hover {
+  background: var(--background-modifier-hover);
+}
+
+.yang-table-wrap {
+  overflow: auto;
+}
+
+.yang-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.yang-table th,
+.yang-table td {
+  text-align: left;
+  padding: 2px 6px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.yang-table tbody tr {
+  cursor: pointer;
+}
+
+.yang-table tbody tr:hover {
+  background: var(--background-modifier-hover);
+}
+
+.yang-error-panel {
+  margin-top: 8px;
+  border-top: 1px solid var(--background-modifier-border);
+  padding-top: 4px;
+}
+
+.yang-error-title {
+  font-weight: 600;
+  color: var(--text-error);
+  margin-bottom: 4px;
+}
+
+.yang-error-item {
+  display: flex;
+  gap: 6px;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.yang-error-item:hover {
+  background: var(--background-modifier-hover);
+}
+
+.yang-error-item.error .yang-error-line {
+  color: var(--text-error);
+}
+
+.yang-error-item.warning .yang-error-line {
+  color: var(--text-warning);
+}
+
+.yang-error-line {
+  flex-shrink: 0;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.yang-error-msg {
+  color: var(--text-normal);
+}
+
+/* 编辑器诊断下划线 */
+.cm-yang-error {
+  text-decoration: underline wavy var(--text-error);
+}
+
+.cm-yang-warning {
+  text-decoration: underline wavy var(--text-warning);
+}
+
+/* 诊断 hover 提示 */
+.cm-tooltip.cm-yang-tooltip {
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  max-width: 480px;
+}
+
+.cm-yang-tooltip-item.error {
+  color: var(--text-error);
+}
+
+.cm-yang-tooltip-item.warning {
+  color: var(--text-warning);
+}
+
+/* 跳行高亮闪烁（标记字段范围） */
+.cm-yang-flash-mark {
+  background: var(--background-modifier-active-hover);
+  border-radius: 2px;
+  outline: 1px solid var(--interactive-accent);
+  transition: background-color 0.7s ease;
+}
+
+/* 折叠 gutter：保证箭头可见、可点击 */
+.cm-yang .cm-foldGutter {
+  width: auto;
+}
+
+.cm-yang .cm-foldGutter span {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.cm-yang .cm-foldGutter span:hover {
+  color: var(--text-normal);
+}
+
+/* YANG 编辑视图：撑满容器高度，配合 CM6 虚拟滚动 */
+.view-content:has(.cm-yang) {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cm-yang {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cm-yang .cm-editor {
+  height: 100%;
+}

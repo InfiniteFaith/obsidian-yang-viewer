@@ -1,0 +1,6 @@
+module syntax-broken {
+  namespace "urn:example:syntax";
+  prefix sy;
+
+  container unclosed {
+    leaf x { type string; }
